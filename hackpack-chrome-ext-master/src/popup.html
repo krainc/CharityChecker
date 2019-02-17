@@ -29,7 +29,7 @@ header {
   background-color: rgb(255, 255, 255);
   border-radius: 13px;
   /* (height of inner div) / 2 + padding */
-  padding: 3px;
+  padding: 2px;
 }
 #progressbar>div {
   background-color: rgb(102, 153, 255);
@@ -61,6 +61,13 @@ p {
 h2{
   display: inline;
 }
+h3{
+  display: inline;
+}
+h4{
+  display: inline;
+  color: gray;
+}
 </style >
 <body>
 <img src="/icons/CharityChecker-logo-red.png" alt="CharityChecker logo" width="112" height="67">
@@ -90,7 +97,16 @@ h2{
   </header>
 <script src="popup.js" ></script>
 
+<h3> Overall Score: </h3>
+<h3 id = "overallScoreP"></h3>
+<h3> /100 </h3>
 </br>
+<h4> Financial: </h4>
+<h4 id = "financialScoreP"></h4>
+<h4>Accountability: </h4>
+<h4 id = "accountabilityScoreP"></h4>
+
+<br></br>
 <p id="missionP"></p>
 <br></br>
 <p id = "taxDeductP"></p>
@@ -98,7 +114,7 @@ h2{
 <p>Email: </p>
 <b><p id="donateEmailP"></p></b>
 </br>
-<a href="#">Website</a>
-
+<a id="linkP" target="_blank" href="#">More information</a>
+<p id="overallScoreP"> </p>
 </body>
 </html>

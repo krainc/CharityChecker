@@ -11,8 +11,8 @@ var charityNavigatorURL, ratingsURL;
 
 // API Call 2
 var programExpensesRatio;
-var financialRating, performanceMetrics;
-
+var financialRating, accountabilityRating, performanceMetrics;
+var overallScore, financialScore, accountabilityScore;
 // The API allows us to search for a charity by the EIN (a unique Employer Identification Number, assigned by the federal
 // goverment). We cannot search by the url, so instead we manually map some donation urls to the EIN of their associated charities.
 // This database is (intentionally) limited to a few domains, for proof-of-concept.
@@ -110,9 +110,9 @@ if (urlToEin.has(currUrl)) {
 
         donateEmail =          (data.generalEmail             !== (null || undefined)? data.generalEmail               :'n/a');
 
-        if(data.irsClassification !== (null || undefined)){
+        if (data.irsClassification !== (null || undefined)){
             deductible =  (data.irsClassification.deductibility   !== (null || undefined)? data.irsClassification.deductibility :'n/a');
-        }else{
+        } else{
           deductible = 'n/a';
         }
         category  =            (data.category                !== (null || undefined)? data.category         :'n/a');
@@ -129,7 +129,7 @@ if (urlToEin.has(currUrl)) {
         charityNavigatorURL =  (data.charityNavigatorURL !== (null || undefined)? data.charityNavigatorURL       :'n/a');
         if (data.currentRating !== (null || undefined) && data.currentRating._rapid_links !== (null || undefined) && data.currentRating._rapid_links.related !== undefined) {
             ratingsURL = (data.currentRating._rapid_links.related.href !==
-                undefined? data.currentRating._rapid_links.related.href :'n/a');
+                (null || undefined) ? data.currentRating._rapid_links.related.href :'n/a');
         } else {
             ratingsURL = 'n/a';
         }
@@ -146,16 +146,21 @@ if (urlToEin.has(currUrl)) {
             Http2.onreadystatechange=(e)=> {
                 // data2 should be valid, since ratingsURL is checked before entering this block
                 var data2 = JSON.parse(Http2.responseText);
-
+                overallScore = (data2.score !== (null || undefined) ? data2.score :'n/a');
+                document.getElementById("overallScoreP").innerHTML = overallScore;
+                console.log("SCORE!!" + data2.score);
                 // Set variables to JSON data
                 console.log("programExpensesRatio: " + data2.financialRating.performanceMetrics.programExpensesRatio);
-                financialRating = (data2.financialRating !== undefined ? data2.financialRating : 'n/a');
+                financialRating = (data2.financialRating !== (undefined || null) ? data2.financialRating : 'n/a');
+                accountabilityRating = (data2.accountabilityRating !== (undefined || null) ? data2.accountabilityRating : 'n/a');
                 if (financialRating !== 'n/a') {
+                    financialScore= (financialRating.score !==
+                      (undefined || null) ? financialRating.score : 'n/a');
                     performanceMetrics = (financialRating.performanceMetrics !==
-                        undefined ? financialRating.performanceMetrics : 'n/a');
+                        (undefined || null) ? financialRating.performanceMetrics : 'n/a');
                     if (performanceMetrics !== 'n/a') {
-                        programExpensesRatio = ((performanceMetrics.programExpensesRatio !==
-                            undefined) ? performanceMetrics.programExpensesRatio : "n/a");
+                        programExpensesRatio = (performanceMetrics.programExpensesRatio !==
+                            (undefined || null) ? performanceMetrics.programExpensesRatio : "n/a");
                         console.log('1' + programExpensesRatio)
                     } else {
                         programExpensesRatio = 'n/a';
@@ -166,7 +171,13 @@ if (urlToEin.has(currUrl)) {
                     console.log('4' + programExpensesRatio)
                     performanceMetrics = 'n/a';
                     programExpensesRatio = 'n/a';
+                    financialScore = 'n/a';
                     console.log('5' + programExpensesRatio)
+                }
+
+                if (accountabilityRating !== 'n/a') {
+                  accountabilityScore = (accountabilityRating.score !==
+                      (undefined || null) ? accountabilityRating.score : 'n/a');
                 }
 
                 // Make sure to print to console in this function (async task)
@@ -180,6 +191,10 @@ if (urlToEin.has(currUrl)) {
                 document.querySelectorAll('#progressbar > div').forEach(e => {
                     e.setAttribute('style', `width: ${percent}%`)
                 })
+                console.log("Financial score" + financialScore);
+                console.log("Accountability score " + accountabilityScore);
+                document.getElementById("financialScoreP").innerHTML = financialScore + ",  ";
+                document.getElementById("accountabilityScoreP").innerHTML = accountabilityScore;
             }
         }
 
@@ -199,13 +214,19 @@ if (urlToEin.has(currUrl)) {
         document.getElementById("taxDeductP").innerHTML = deductible;
         document.getElementById("donateEmailP").innerHTML = donateEmail;
 
-        document.getElementById("missionP").innerHTML = mission.substr(0, 200) + ". . .";
+        document.getElementById("missionP").innerHTML = mission.substr(0, 250) + ". . .";
         console.log("charityURL: " + charityNavigatorURL);
 
         //var str = "More Information";
         //var result = str.link(charityNavigatorURL);
         //document.getElementById("linkP").innerHTML = result;
-        document.getElementById("linkP").href=charityNavigatorURL;
+        let lp = document.getElementById("linkP");
+        lp.href=charityNavigatorURL;
+        /*lp.onclick = function(event) {
+          chrome.tabs.create({ url: charityNavigatorURL });
+          event.preventDefault();
+          return false;
+        };*/
         // Print variable values to console for testing
         console.log(charityName, currentCEOName, currentCEOTitle, tagLine, mission, donateEmail, deductible, categoryName, categoryImage);
         console.log(charityNavigatorURL);
