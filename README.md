@@ -1,5 +1,7 @@
 ![Logo](https://raw.githubusercontent.com/krainc/CharityChecker/master/hackpack-chrome-ext-master/icons/CharityChecker-logo-red.png)
 
+![Logo](https://raw.githubusercontent.com/krainc/CharityChecker/master/hackpack-chrome-ext-master/icons/examplePicture.jpg)
+
 # CharityChecker
 A browser extension that gives you the lowdown on your favorite charity sites. Make informed donations!
 
