@@ -13,7 +13,9 @@ Charity Checker automatically pulls relevant information about a charity when yo
 ## Challenges we ran into
 
 ## Accomplishments that we're proud of
+All of our team members were new to Chrome extensions, Javascript, HTML, using APIs, and Alexa Skills Kit, and it was the first hackathon some of us have ever done, so we're proud of the amount we learned within 36 hours! We're also proud that we got to build a working prototype and of how well we worked as a team!
 
 ## What we learned
+
 
 ## What's next for Charity Checker
