@@ -24,6 +24,7 @@ var urlToEin = new Map([
     ['itgetsbetter.org', '261906629'],
     ['americares.org', '061008595'],
     ['secure.americares.org', '061008595'],
+    ['unicef.org', '131760110'],
     ['unicefusa.org', '131760110'],
     ['secure.unicefusa.org', '131760110'],
     ['worldwildlife.org', '521693387'],
@@ -57,7 +58,10 @@ var urlToEin = new Map([
     ['woundedwarriorproject.org', '202370934'],
     ['americanheart.org', '135613797'],
     ['shrinershospitalsforchildren.org', '362193608'],
-    ['charitywater.org', '223936753']
+    ['charitywater.org', '223936753'],
+    ['taskforce.org', '581698648'],
+    ['ymca.net', '951644052'],
+    ['bgca.org', '135562976']
 ]);
 
 var currUrl;
