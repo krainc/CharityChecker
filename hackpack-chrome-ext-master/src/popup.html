@@ -54,7 +54,7 @@ img  {
 }
 p {
   font-family: "Gill Sans", "Lucida Grande", Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 13px;
+  font-size: 17px;
   color: rgb(26, 26, 26);
   display: inline;
 }
@@ -68,24 +68,29 @@ h4{
   display: inline;
   color: gray;
 }
+th{
+  text-align: left;
+}
+td{
+  text-align: left;
+}
+
 </style >
 <body>
 <img src="/icons/CharityChecker-logo-red.png" alt="CharityChecker logo" width="112" height="67">
 <!--<canvas id="myCanvas" width="600" height="100"></canvas>-->
-<p style="font-size: 11px"><b>Welcome to Charity Checker. </b></p>
-<br>
-<p style="font-size: 11px"><b>We're so glad you want to donate to </br> make a difference!</b></p>
+<p><b>Welcome to Charity Checker. We're so glad </br> you want to donate to make a difference!</b></p>
 <br><br style="font-size: 5px">
-<br>
 <p> Here are some quick facts we think you should know about </p>
 <b><p id="Name">:</p></b>
 <br>
 <br>
-<p> Current CEO is </p>
-<b><p id="CurrCEO"></p>
+<p> Current CEO:</p>
+</br>
+<b><p id="CurrCEO" style="font-size:98%"></p>
 <p>-</p>
-<p id ="CEOTitle"></p></b>
-<br><br>
+<p id ="CEOTitle" style="font-size:98%"></p></b>
+<br></br>
 
 
 <header>
@@ -96,19 +101,53 @@ h4{
     <h2> cents out of each dollar goes towards your cause</h2>
   </header>
 <script src="popup.js" ></script>
-
+</br>
 <h3> Overall Score: </h3>
 <h3 id = "overallScoreP"></h3>
-<h3> /100 </h3>
+<h3>/ 100 </h3>
 </br>
 <h4> Financial: </h4>
 <h4 id = "financialScoreP"></h4>
+<h4>/ 100, </h4>
 <h4>Accountability: </h4>
 <h4 id = "accountabilityScoreP"></h4>
+<h4>/ 100 </h4>
+<br></br>
+<p id="missionP" style="font-size:100%;"></p>
+<br></br>
 
-<br></br>
-<p id="missionP"></p>
-<br></br>
+
+<table style="width:100%">
+  <tr>
+    <th>Type</th>
+    <th> Amount</th>
+  </tr>
+  <tr>
+    <td>Fundraising Expenses</td>
+    <td id = "fEP"></td>
+  </tr>
+  <tr>
+    <td>Administrative Expenses</td>
+    <td id = "aEP"></td>
+  </tr>
+  <tr>
+    <td>Program  Expenses</td>
+    <td id = "pEP"></td>
+  </tr>
+  <tr>
+    <td>Total Expenses</td>
+    <td id = "tEP"></td>
+  </tr>
+  <tr>
+    <td>Total Revenue</td>
+    <td id = "tRP"></td>
+  </tr>
+  <tr>
+    <td>Total Assets</td>
+    <td id = "tNAP"></td>
+  </tr>
+</table>
+<br>
 <p id = "taxDeductP"></p>
 <br></br>
 <p>Email: </p>

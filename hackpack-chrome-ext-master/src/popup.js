@@ -13,6 +13,7 @@ var charityNavigatorURL, ratingsURL;
 var programExpensesRatio;
 var financialRating, accountabilityRating, performanceMetrics;
 var overallScore, financialScore, accountabilityScore;
+var fE, aE, pE, tE, tR, tNA;
 // The API allows us to search for a charity by the EIN (a unique Employer Identification Number, assigned by the federal
 // goverment). We cannot search by the url, so instead we manually map some donation urls to the EIN of their associated charities.
 // This database is (intentionally) limited to a few domains, for proof-of-concept.
@@ -153,6 +154,30 @@ if (urlToEin.has(currUrl)) {
                 console.log("programExpensesRatio: " + data2.financialRating.performanceMetrics.programExpensesRatio);
                 financialRating = (data2.financialRating !== (undefined || null) ? data2.financialRating : 'n/a');
                 accountabilityRating = (data2.accountabilityRating !== (undefined || null) ? data2.accountabilityRating : 'n/a');
+                form990 = (data2.form990 !== (undefined || null) ? data2.form990 : 'n/a');
+                if (form990 !== 'n/a') {
+                  fE = (form990.fundraisingExpenses !== (undefined || null) ? form990.fundraisingExpenses : 'n/a');
+                  aE = (form990.administrativeExpenses !== (undefined || null) ? form990.administrativeExpenses : 'n/a');
+                  pE = (form990.programExpenses !== (undefined || null) ? form990.programExpenses  : 'n/a');
+                  tE = (form990.totalExpenses !== (undefined || null) ? form990.totalExpenses : 'n/a');
+                  tR = (form990.totalRevenue !== (undefined || null) ? form990.totalRevenue : 'n/a');
+                  tNA = (form990.totalNetAssets !== (undefined || null) ? form990.totalNetAssets : 'n/a');
+                }
+                else {
+                  fE = 'n/a';
+                  aE = 'n/a';
+                  pE = 'n/a';
+                  tE = 'n/a';
+                  tR = 'n/a';
+                  tNA = 'n/a';
+                }
+                document.getElementById("fEP").innerHTML = "$" + numberWithCommas(fE);
+                document.getElementById("aEP").innerHTML = "$" + numberWithCommas(aE);
+                document.getElementById("pEP").innerHTML = "$" + numberWithCommas(pE);
+                document.getElementById("tEP").innerHTML = "$" + numberWithCommas(tE);
+                document.getElementById("tRP").innerHTML = "$" + numberWithCommas(tR);
+                document.getElementById("tNAP").innerHTML = "$" + numberWithCommas(tNA);
+
                 if (financialRating !== 'n/a') {
                     financialScore= (financialRating.score !==
                       (undefined || null) ? financialRating.score : 'n/a');
@@ -179,6 +204,9 @@ if (urlToEin.has(currUrl)) {
                   accountabilityScore = (accountabilityRating.score !==
                       (undefined || null) ? accountabilityRating.score : 'n/a');
                 }
+                else {
+                  accountabilityScore = 'n/a';
+                }
 
                 // Make sure to print to console in this function (async task)
                 console.log("financialRating: " + financialRating);
@@ -193,7 +221,7 @@ if (urlToEin.has(currUrl)) {
                 })
                 console.log("Financial score" + financialScore);
                 console.log("Accountability score " + accountabilityScore);
-                document.getElementById("financialScoreP").innerHTML = financialScore + ",  ";
+                document.getElementById("financialScoreP").innerHTML = financialScore;
                 document.getElementById("accountabilityScoreP").innerHTML = accountabilityScore;
             }
         }
@@ -271,4 +299,8 @@ function extractHostname(url) {
     hostname = hostname.split('?')[0];
 
     return hostname;
+}
+
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
