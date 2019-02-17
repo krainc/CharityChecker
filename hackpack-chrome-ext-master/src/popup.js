@@ -183,21 +183,16 @@ if (urlToEin.has(currUrl)) {
             }
         }
 
-        console.log('6' + programExpensesRatio)
        if (programExpensesRatio !== 'n/a') {
-         console.log("ratio: " + programExpensesRatio);
           programExpensesRatio = parseInt(programExpensesRatio);
-          console.log("new ratio: " + programExpensesRatio);
         }
 
-    console.log('7' + programExpensesRatio)
         // Set HTML objects to variables values
         //document.getElementById("domainName").innerHTML = currUrl;
         document.getElementById("Name").innerHTML = charityName;
         //document.getElementById("programRatio").innerHTML = programExpensesRatio;
         document.getElementById("Name").innerHTML = charityName;
 
-        console.log('8' + programExpensesRatio);
         document.getElementById("CurrCEO").innerHTML = currentCEOName;
         document.getElementById("CEOTitle").innerHTML = currentCEOTitle;
 
@@ -205,6 +200,12 @@ if (urlToEin.has(currUrl)) {
         document.getElementById("donateEmailP").innerHTML = donateEmail;
 
         document.getElementById("missionP").innerHTML = mission.substr(0, 200) + ". . .";
+        console.log("charityURL: " + charityNavigatorURL);
+
+        //var str = "More Information";
+        //var result = str.link(charityNavigatorURL);
+        //document.getElementById("linkP").innerHTML = result;
+        document.getElementById("linkP").href=charityNavigatorURL;
         // Print variable values to console for testing
         console.log(charityName, currentCEOName, currentCEOTitle, tagLine, mission, donateEmail, deductible, categoryName, categoryImage);
         console.log(charityNavigatorURL);
