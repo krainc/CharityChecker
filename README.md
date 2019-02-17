@@ -17,7 +17,7 @@ TLDR: With only one cup of coffee, great mentor support (shoutout to Max and Max
 The longer story: We bounced ideas around and found this browser extension to be the most useful, realistic, and immediately applicable one. We split up the work, so teammate 1 worked mostly with Chrome extensions, HTML, and design; teammate 2 with Javascript and HTML (and trying to get the two to cooperate); teammate 3 with APIs; and teammate 4 with integrating everything into Alexa. 
 
 ## Challenges we ran into
-We first needed to decide on an idea and a team. We were originally in a larger group but needed to split up without leaving anyone out. Once we found a team, we had a hard figuring out where to even start. Due to the somewhat poorly documented API combined with our lack of web dev experience, we had to constantly troubleshoot and ask for help.
+We were originally in a larger group but needed to split up without leaving anyone out. Once we found a team, we had a hard figuring out where to even start. Due to the somewhat poorly documented API combined with our lack of web dev experience, we had to constantly troubleshoot and ask for help. Some specific pain points were going through with API calls and transferring information between different languages dynamically. The mentors and the internet were a great help in this regard!
 
 ## Accomplishments that we're proud of
 All of our team members were new to Chrome extensions, Javascript, HTML, using APIs, and Alexa Skills Kit, and it was the first hackathon some of us have ever done, so we're proud of the amount we learned within 36 hours! We're also proud that we got to build a working prototype and of how well we worked as a cohesive team!
