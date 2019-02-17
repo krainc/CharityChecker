@@ -213,7 +213,7 @@ if (urlToEin.has(currUrl)) {
                 console.log("performanceMetrics: " + performanceMetrics);
                 console.log("programExpensesRatio: " + programExpensesRatio);
 
-                let percent = programExpensesRatio * 100;
+                let percent = (programExpensesRatio * 100).toFixed(2);
                 document.getElementById("centsOutOfDollar").innerHTML = percent;
                 console.log('9' + percent)
                 document.querySelectorAll('#progressbar > div').forEach(e => {
